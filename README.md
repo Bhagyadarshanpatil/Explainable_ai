@@ -13,8 +13,6 @@ This repository packages the core CNN idea from `Bhagyadarshanpatil/Spatial_and_
 - `spatial_spectral_fft_cnn/gradcam.py`
   - `compute_gradcam(...)` to produce a Grad-CAM heatmap.
   - `overlay_heatmap(...)` to blend the heatmap with the spatial channel for display.
-- `code/best_ft_cnn_model.ipynb`
-  - notebook-style training and Grad-CAM workflow that mirrors the original repository format.
 - `tests/test_two_channel_helpers.py`
   - lightweight regression tests for the two-channel preprocessing helpers.
 
@@ -43,8 +41,3 @@ overlay = overlay_heatmap(combined_input[..., 0], result.heatmap)
 - Grad-CAM should target the **last convolutional layer**, which is named `gradcam_target_conv` here.
 - Because your model input is already a **two-channel spatial+frequency tensor**, the FFT preprocessing is kept **outside** the model architecture.
 - If your training notebook already constructs the two channels upstream, feed that tensor directly into `create_two_channel_model(...)` and then call `compute_gradcam(...)` on the same tensor shape during inference.
-
-
-## Notebook version
-
-If you want the implementation in the original repository style, open `code/best_ft_cnn_model.ipynb`. It keeps the dataset-loading/training notebook flow, builds the explicit two-channel spatial+frequency tensor before the CNN, and includes Grad-CAM visualization cells for inference.
